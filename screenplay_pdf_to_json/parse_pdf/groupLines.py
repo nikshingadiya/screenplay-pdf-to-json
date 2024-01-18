@@ -42,25 +42,36 @@ def parsePdf(scriptFile):
     device = PDFPageAggregator(rsrcmgr, laparams=laparams)
 
     # Create a PDF interpreter object.
+
     interpreter = PDFPageInterpreter(rsrcmgr, device)
+
+    
 
     i = 0
     # loop over all pages in the document
+    
+  
     for page in PDFPage.create_pages(document):
-        newScript["pdf"].append({
-            "page": i,
-            "content": []
-        })
+        
+        try:
+            newScript["pdf"].append({
+                "page": i,
+                "content": []
+            })
 
-        # read the page into a layout object
-        interpreter.process_page(page)
-        layout = device.get_result()
+       
+            # read the page into a layout object
+            interpreter.process_page(page)
+            layout = device.get_result()
 
-        # extract text from this object
-        parseObj(newScript, layout._objs, page.mediabox[3])
+            # extract text from this object
+            parseObj(newScript, layout._objs, page.mediabox[3])
+        except Exception as e:
+            print(f"Error processing page {i + 1}: {e}")
+
         i += 1
     return newScript
-    
+
 
 def parseObj(newScript, lt_objs, pageHeight):
 

@@ -1,6 +1,6 @@
 import re
 from screenplay_pdf_to_json.utils.headingHelpers import isHeading
-from screenplay_pdf_to_json.utils.characterHelpers import isCharacter
+from scratch_screenplay_parser.characterHelpers import isCharacter
 
 
 def cleanPage(script, pageStart):

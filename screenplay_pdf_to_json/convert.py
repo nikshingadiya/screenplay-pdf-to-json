@@ -8,6 +8,7 @@ from screenplay_pdf_to_json.utils import cleanScript
 def convert(scriptFile, pageStart):
     # parse script based on pdfminer.six. Lacking documentation so gotta need some adjustments in our end :(
     newScript = parsePdf(scriptFile)["pdf"]
+    print("nikj")
 
 
     firstPagesDict = processInitialPages(newScript)
